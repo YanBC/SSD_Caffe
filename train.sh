@@ -1,0 +1,1 @@
+/opt/caffe/build/tools/caffe train -solver /hand_detect/models/ResNet/SSD_Res10_300x300/ResNet10_3x3_solver.prototxt -snapshot /hand_detect/models/ResNet/SSD_Res10_300x300/ResNet10_3x3_iter_25000.solverstate
