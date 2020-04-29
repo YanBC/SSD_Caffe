@@ -4,7 +4,7 @@ import os,shutil
 import argparse
 import cv2
 
-from get_files_path import *
+from utils import get_file_path
 
 def readXML(data_dir):
   

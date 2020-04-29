@@ -13,7 +13,7 @@ trainval= random.sample(list,tv)
 train=random.sample(trainval,tr)    
   
 print("train and val size",tv)  
-print("traub suze",tr)  
+print("train size",tr)  
 ftrainval = open('VOC2007/ImageSets/Main/trainval.txt', 'w')    
 ftest = open('VOC2007/ImageSets/Main/test.txt', 'w')    
 ftrain = open('VOC2007/ImageSets/Main/train.txt', 'w')    
