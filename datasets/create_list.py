@@ -20,8 +20,9 @@ if __name__ == '__main__':
     ftrainPath = os.path.join(splitDir, 'train.txt')
     fvalPath = os.path.join(splitDir, 'val.txt')
 
-    desDir = os.path.join(dataDir, 'lmdb')
-    os.makedirs(desDir, exist_ok=True)
+    desDir = os.path.join(dataDir, 'ImageSets/List/')
+    # os.makedirs(desDir, exist_ok=True)
+    os.makedirs(desDir)
 
     imageDir = os.path.join(dataDir, 'JPEGImages')
     annoDir = os.path.join(dataDir, 'Annotations')
@@ -52,7 +53,7 @@ if __name__ == '__main__':
 
         image = cv.imread(imagePath)
         if image is None:
-            print(f'{imagePath} does not exist. Continue ...')
+            print('{} does not exist. Continue ...'.format(imagePath))
             continue
         height, width, _ = image.shape
 
