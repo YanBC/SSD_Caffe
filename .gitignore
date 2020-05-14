@@ -158,4 +158,5 @@ dmypy.json
 *.txt
 *.tar
 *.gz
+*.prototxt
 models/
