@@ -1,5 +1,5 @@
-train_net: "/hand_detect/models/VGGNet/SSD_300x300/train.prototxt"
-test_net: "/hand_detect/models/VGGNet/SSD_300x300/test.prototxt"
+train_net: "/hand_detect/models/VGGNet_SSD/SSD_300x300/train.prototxt"
+test_net: "/hand_detect/models/VGGNet_SSD/SSD_300x300/test.prototxt"
 test_iter: 38
 test_interval: 10000
 base_lr: 9.99999974738e-05
@@ -9,10 +9,10 @@ lr_policy: "multistep"
 gamma: 0.10000000149
 momentum: 0.899999976158
 weight_decay: 0.000500000023749
-snapshot: 80000
-snapshot_prefix: "/hand_detect/models/VGGNet/SSD_300x300/VGG_SSD_300x300"
+snapshot: 5000
+snapshot_prefix: "/hand_detect/models/VGGNet_SSD/snapshots/vgg_ssd"
 solver_mode: GPU
-device_id: 0
+device_id: 1
 debug_info: false
 snapshot_after_train: true
 test_initialization: false

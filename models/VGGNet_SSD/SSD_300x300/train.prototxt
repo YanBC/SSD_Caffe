@@ -45,7 +45,7 @@ layer {
     }
   }
   data_param {
-    source: "/hand_detect/datasets/VOC2007/lmdb/VOC2007_trainval_lmdb"
+    source: "/hand_detect/datasets/voc_hand/lmdb/voc_hand_trainval_lmdb"
     batch_size: 32
     backend: LMDB
   }
@@ -132,7 +132,7 @@ layer {
       max_sample: 1
       max_trials: 50
     }
-    label_map_file: "/hand_detect/labelmap_voc.prototxt"
+    label_map_file: "/hand_detect/datasets/voc_hand/labelmap.prototxt"
   }
 }
 layer {

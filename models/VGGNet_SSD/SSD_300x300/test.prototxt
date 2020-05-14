@@ -20,14 +20,14 @@ layer {
     }
   }
   data_param {
-    source: "/hand_detect/datasets/VOC2007/lmdb/VOC2007_test_lmdb"
+    source: "/hand_detect/datasets/voc_hand/lmdb/voc_hand_test_lmdb"
     batch_size: 8
     backend: LMDB
   }
   annotated_data_param {
     batch_sampler {
     }
-    label_map_file: "/hand_detect/labelmap_voc.prototxt"
+    label_map_file: "/hand_detect/datasets/voc_hand/labelmap.prototxt"
   }
 }
 layer {
@@ -1638,11 +1638,11 @@ layer {
       top_k: 400
     }
     save_output_param {
-      output_directory: "/hand_detect/results//root/Main"
+      output_directory: "/hand_detect/results/voc_hand/Main"
       output_name_prefix: "comp4_det_test_"
       output_format: "VOC"
-      label_map_file: "/hand_detect/labelmap_voc.prototxt"
-      name_size_file: "data/VOC2007/test_name_size.txt"
+      label_map_file: "/hand_detect/datasets/voc_hand/labelmap.prototxt"
+      name_size_file: "/hand_detect/datasets/voc_hand/ImageSets/List/test_name_size.txt"
       num_test_image: 304
     }
     code_type: CENTER_SIZE
@@ -1664,7 +1664,7 @@ layer {
     background_label_id: 0
     overlap_threshold: 0.5
     evaluate_difficult_gt: false
-    name_size_file: "data/VOC2007/test_name_size.txt"
+    name_size_file: "/hand_detect/datasets/voc_hand/ImageSets/List/test_name_size.txt"
   }
 }
 
