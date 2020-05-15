@@ -923,9 +923,9 @@ layer {
   bottom: "data"
   top: "conv4_3_norm_mbox_priorbox"
   prior_box_param {
-    min_size: 30.0
+    min_size: 26.0
     max_size: 60.0
-    aspect_ratio: 2.0
+    aspect_ratio: 1.5
     flip: true
     clip: false
     variance: 0.10000000149
@@ -950,7 +950,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 24
+    num_output: 16
     pad: 1
     kernel_size: 3
     stride: 1
@@ -998,7 +998,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 12
+    num_output: 8
     pad: 1
     kernel_size: 3
     stride: 1
@@ -1039,10 +1039,9 @@ layer {
   bottom: "data"
   top: "fc7_mbox_priorbox"
   prior_box_param {
-    min_size: 60.0
-    max_size: 111.0
+    min_size: 51.0
+    max_size: 60.0
     aspect_ratio: 2.0
-    aspect_ratio: 3.0
     flip: true
     clip: false
     variance: 0.10000000149
@@ -1067,7 +1066,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 24
+    num_output: 16
     pad: 1
     kernel_size: 3
     stride: 1
@@ -1115,7 +1114,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 12
+    num_output: 8
     pad: 1
     kernel_size: 3
     stride: 1
@@ -1156,10 +1155,9 @@ layer {
   bottom: "data"
   top: "conv6_2_mbox_priorbox"
   prior_box_param {
-    min_size: 111.0
-    max_size: 162.0
-    aspect_ratio: 2.0
-    aspect_ratio: 3.0
+    min_size: 71.0
+    max_size: 140.0
+    aspect_ratio: 1.6
     flip: true
     clip: false
     variance: 0.10000000149
@@ -1184,7 +1182,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 24
+    num_output: 16
     pad: 1
     kernel_size: 3
     stride: 1
@@ -1232,7 +1230,7 @@ layer {
     decay_mult: 0.0
   }
   convolution_param {
-    num_output: 12
+    num_output: 8
     pad: 1
     kernel_size: 3
     stride: 1
@@ -1273,10 +1271,9 @@ layer {
   bottom: "data"
   top: "conv7_2_mbox_priorbox"
   prior_box_param {
-    min_size: 162.0
+    min_size: 106.0
     max_size: 213.0
-    aspect_ratio: 2.0
-    aspect_ratio: 3.0
+    aspect_ratio: 1.5
     flip: true
     clip: false
     variance: 0.10000000149
