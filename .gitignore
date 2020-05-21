@@ -160,3 +160,4 @@ dmypy.json
 *.gz
 *.prototxt
 models/
+cache/

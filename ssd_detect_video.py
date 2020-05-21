@@ -8,14 +8,6 @@ import os
 import sys
 import argparse
 import cv2 as cv
-# Make sure that caffe is on the python path:
-# caffe_root = './'
-# os.chdir(caffe_root)
-# sys.path.insert(0, os.path.join(caffe_root, 'python'))
-# import caffe
-
-# from google.protobuf import text_format
-# from caffe.proto import caffe_pb2
 
 from nn import CaffeDetection
 
@@ -57,21 +49,7 @@ def main(args):
             frame = frame / 255.
             result = detection.detect(frame)
 
-            # height = frame1.shape[0]
-            # width = frame1.shape[1]
-
             for item in result:
-                # xmin = int(round(item[0] * width))
-                # ymin = int(round(item[1] * height))
-                # xmax = int(round(item[2] * width))
-                # ymax = int(round(item[3] * height))
-                # if item[4] == 1:
-                #     cv.rectangle(frame1, (xmin, ymin), (xmax, ymax), (0, 0, 255), 2)
-                # elif item[4] == 2:
-                #     cv.rectangle(frame1, (xmin, ymin), (xmax, ymax), (0, 255, 255), 2)
-                # else:
-                #     cv.rectangle(frame1, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
-
                 xmin, ymin, xmax, ymax = item[0:4]
                 cv.rectangle(frame1, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
             video_w.write(frame1)
@@ -85,8 +63,8 @@ def get_args():
     p.add_argument('model_weights', help='path to model weight')
     p.add_argument('src', help='path to video or image file')
     p.add_argument('desDir', help='where to save the result')
-    p.add_argument('--image_resize', default=300, type=int)
-    p.add_argument('--gpu_id', type=int, default=0, help='gpu id')
+    p.add_argument('--image_resize', default=300, type=int, help='resize image to specific shape. Default: 300')
+    p.add_argument('--gpu_id', type=int, default=0, help='gpu id. Default: 0')
     return p.parse_args()
 
 
