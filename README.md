@@ -33,7 +33,8 @@ python ssd_detect_video.py \
         models/VGGNet_SSD/SSD_300x300/deploy.prototxt \
         models/VGGNet_SSD/snapshots/vgg_ssd_iter_50000.caffemodel \
         /workspace/hand_detection/videos/VID_20200423_103204.mp4 \
-        .
+        . \
+        --gpu_id 1
 ```
 
 

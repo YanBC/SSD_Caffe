@@ -20,6 +20,17 @@ def get_labelname(labelmap, labels):
     return labelnames
 
 
+def clip(x, min_thres, max_thres):
+    assert min_thres <= max_thres
+    if x <= min_thres:
+        return min_thres
+    elif x <= max_thres:
+        return x
+    else:
+        return max_thres
+
+
+
 class CaffeDetection:
     def __init__(self, model_def, model_weights, labelmap_file, gpu_id, image_resize=300):
         caffe.set_device(gpu_id)
@@ -88,10 +99,10 @@ class CaffeDetection:
             # xmax = top_xmax[i]
             # ymax = top_ymax[i]
 
-            xmin = int(round(top_xmin[i] * image_width))
-            ymin = int(round(top_ymin[i] * image_height))
-            xmax = int(round(top_xmax[i] * image_width))
-            ymax = int(round(top_ymax[i] * image_height))
+            xmin = int(clip(round(top_xmin[i] * image_width), 0, image_width))
+            ymin = int(clip(round(top_ymin[i] * image_height), 0, image_height))
+            xmax = int(clip(round(top_xmax[i] * image_width), 0, image_width))
+            ymax = int(clip(round(top_ymax[i] * image_height), 0, image_height))
 
             score = top_conf[i]
             label = int(top_label_indices[i])
@@ -99,3 +110,5 @@ class CaffeDetection:
             result.append([xmin, ymin, xmax, ymax, label, score, label_name])
 
         return result
+
+

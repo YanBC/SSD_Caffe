@@ -19,7 +19,10 @@ def main(args):
     srcPath = args.src
     if not os.path.isfile(srcPath):
         print('{} does not exit'.format(srcPath))
-    desPath = os.path.join(args.desDir, 'res_{}'.format(os.path.basename(srcPath)))
+    desDir = args.desDir
+    if not os.path.isdir(desDir):
+        os.makedirs(desDir)
+    desPath = os.path.join(desDir, 'res_{}'.format(os.path.basename(srcPath)))
 
     video = cv.VideoCapture(srcPath)
     num_frames = int(video.get(cv.CAP_PROP_FRAME_COUNT))
