@@ -360,10 +360,10 @@ if __name__ == '__main__':
         tmp_avgs = tmp.mean(axis=0)
 
         print('Class: %s' % className)
-        print('Recall: %0.3f' % (tps/(tps+fns)))
-        print('Precision: %0.3f' % (tps/(tps+fps)))
+        print('Recall: %0.3f' % (float(tps)/float(tps+fns)))
+        print('Precision: %0.3f' % (float(tps)/float(tps+fps)))
         print('True Positive:')
-        print('    Average Confidence: %0.3f' % (tmp_avgs[0]))
-        print('    Average IoU: %0.3f\n' % (tmp_avgs[1]))
+        print('    Average Confidence: %0.3f' % (float(tmp_avgs[0])))
+        print('    Average IoU: %0.3f\n' % (float(tmp_avgs[1])))
 
 

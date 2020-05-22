@@ -2,6 +2,7 @@ import caffe
 from google.protobuf import text_format
 from caffe.proto import caffe_pb2
 import numpy as np
+import cv2 as cv
 
 
 def get_labelname(labelmap, labels):
@@ -67,8 +68,10 @@ class CaffeDetection:
         #image = caffe.io.load_image(image_file)
 
         #Run the net and examine the top_k results
-        transformed_image = self.transformer.preprocess('data', image)
-        self.net.blobs['data'].data[...] = transformed_image
+        frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        frame = frame / 255.
+        transformed_frame = self.transformer.preprocess('data', frame)
+        self.net.blobs['data'].data[...] = transformed_frame
 
         # Forward pass.
         detections = self.net.forward()['detection_out']

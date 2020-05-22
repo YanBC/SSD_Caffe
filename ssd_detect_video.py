@@ -29,9 +29,7 @@ def main(args):
 
     if num_frames == 1:
         _, frame1 = video.read()
-        frame = cv.cvtColor(frame1, cv.COLOR_BGR2RGB)
-        frame = frame / 255.
-        result = detection.detect(frame)
+        result = detection.detect(frame1)
 
         for item in result:
             xmin, ymin, xmax, ymax = item[0:4]
@@ -47,10 +45,7 @@ def main(args):
             success, frame1 = video.read() 
             if(success == False):
                 break;
-
-            frame = cv.cvtColor(frame1, cv.COLOR_BGR2RGB)
-            frame = frame / 255.
-            result = detection.detect(frame)
+            result = detection.detect(frame1)
 
             for item in result:
                 xmin, ymin, xmax, ymax = item[0:4]
