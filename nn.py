@@ -57,6 +57,27 @@ class CaffeDetection:
             text_format.Merge(str(file.read()), self.labelmap)
 
 
+    def _preprocessing(self, image):
+        frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        frame = frame / 255.
+        return self.transformer.preprocess('data', frame)
+
+
+    def _faster_preprocessing(self, image):
+        # frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        # frame = frame / 255.
+        floated = image.astype(np.float32, copy=False)
+        resized = cv.resize(floated, (300,300))
+        # swapped = resized[:,:,(2,1,0)]
+        # raw_scaled = 255.0 * swapped
+        minus = np.ones((300,300,3), dtype=np.float32)
+        minus[:,:,0] *= 104.0
+        minus[:,:,1] *= 117.0
+        minus[:,:,2] *= 123.0
+        meaned = resized - minus
+        transposed = np.transpose(meaned, (2,0,1))
+        return transposed
+
     def detect(self, image, conf_thresh=0.5, topn=5):
         '''
         SSD detection
@@ -65,12 +86,9 @@ class CaffeDetection:
 
         # set net to batch size of 1
         self.net.blobs['data'].reshape(1, 3, self.image_resize, self.image_resize)
-        #image = caffe.io.load_image(image_file)
 
-        #Run the net and examine the top_k results
-        frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
-        frame = frame / 255.
-        transformed_frame = self.transformer.preprocess('data', frame)
+        # transformed_frame = self._preprocessing(image)
+        transformed_frame = self._faster_preprocessing(image)
         self.net.blobs['data'].data[...] = transformed_frame
 
         # Forward pass.
@@ -84,7 +102,6 @@ class CaffeDetection:
         det_xmax = detections[0,0,:,5]
         det_ymax = detections[0,0,:,6]
 
-        # Get detections with confidence higher than 0.6.
         top_indices = [i for i, conf in enumerate(det_conf) if conf >= conf_thresh]
 
         top_conf = det_conf[top_indices]
@@ -97,11 +114,6 @@ class CaffeDetection:
 
         result = []
         for i in xrange(min(topn, top_conf.shape[0])):
-            # xmin = top_xmin[i]
-            # ymin = top_ymin[i]
-            # xmax = top_xmax[i]
-            # ymax = top_ymax[i]
-
             xmin = int(clip(round(top_xmin[i] * image_width), 0, image_width))
             ymin = int(clip(round(top_ymin[i] * image_height), 0, image_height))
             xmax = int(clip(round(top_xmax[i] * image_width), 0, image_width))
