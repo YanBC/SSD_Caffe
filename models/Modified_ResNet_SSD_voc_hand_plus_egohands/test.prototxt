@@ -1402,6 +1402,14 @@ layer {
       nms_threshold: 0.449999988079
       top_k: 400
     }
+    save_output_param {
+      output_directory: "./models/Modified_ResNet_SSD_voc_hand_plus_egohands/results/voc_hand_plus_egohands/Main"
+      output_name_prefix: "comp4_det_test_"
+      output_format: "VOC"
+      label_map_file: "./datasets/voc_hand_plus_egohands/labelmap.prototxt"
+      name_size_file: "./datasets/voc_hand_plus_egohands/ImageSets/List/test_name_size.txt"
+      num_test_image: 100
+    }
     code_type: CENTER_SIZE
     keep_top_k: 200
     confidence_threshold: 0.00999999977648
@@ -1421,7 +1429,7 @@ layer {
     background_label_id: 0
     overlap_threshold: 0.5
     evaluate_difficult_gt: false
-    name_size_file: "datasets/VOC2007/test_name_size.txt"
+    name_size_file: "./datasets/voc_hand_plus_egohands/ImageSets/List/test_name_size.txt"
   }
 }
 

@@ -1,7 +1,7 @@
 train_net: "./models/Modified_ResNet_SSD_voc_hand_plus_egohands/train.prototxt"
 test_net: "./models/Modified_ResNet_SSD_voc_hand_plus_egohands/test.prototxt"
 test_iter: 62
-test_interval: 10000
+test_interval: 1000
 
 base_lr: 0.01
 display: 10
