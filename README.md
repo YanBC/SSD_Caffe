@@ -1,7 +1,7 @@
 # Setup
 0. You will need the ssd-caffe docker image. 
 ```bash
-docker pull yanbc/caffe-ssd-gpu
+docker pull yanbc/ssd-caffe-gpu
 ```
 
 1. Put your dataset under `datasets` folder, your dataset should be of voc format and contains these folders and file: `Annotations`, `JPEGImages`, `labelmap.prototxt`
